@@ -84,6 +84,12 @@ return require('packer').startup(function(use)
     use {'jose-elias-alvarez/null-ls.nvim', config = "require('null-ls-config')"}
     use {'tami5/lspsaga.nvim', config = "require('lspsaga-config')"}
 
+    --- Autodetect indentation
+    use {'tpope/vim-sleuth'}
+
+    --- Git utilities
+    use {'tpope/vim-fugitive'}
+
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then
