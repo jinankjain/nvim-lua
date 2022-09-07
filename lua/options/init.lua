@@ -17,6 +17,7 @@ vim.o.ignorecase = true
 vim.o.scrolloff = 3
 vim.o.sidescrolloff = 5
 vim.o.mouse = "a"
+vim.opt.colorcolumn = "80"
 
 vim.wo.wrap = false
 vim.wo.number = true

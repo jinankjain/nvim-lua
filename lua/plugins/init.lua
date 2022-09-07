@@ -84,6 +84,8 @@ return require('packer').startup(function(use)
     use {'jose-elias-alvarez/null-ls.nvim', config = "require('null-ls-config')"}
     use {'tami5/lspsaga.nvim', config = "require('lspsaga-config')"}
 
+    use({'weilbith/nvim-code-action-menu', cmd = 'CodeActionMenu'})
+
     --- Autodetect indentation
     use {'tpope/vim-sleuth'}
 
