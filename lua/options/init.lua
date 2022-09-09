@@ -34,3 +34,11 @@ vim.o.autoindent = true
 vim.bo.autoindent = true
 vim.o.expandtab = true
 vim.bo.expandtab = true
+
+vim.cmd('autocmd Filetype javascript setlocal tabstop=4')
+vim.cmd('autocmd Filetype javascript setlocal softtabstop=4')
+vim.cmd('autocmd Filetype javascript setlocal shiftwidth=4')
+
+vim.cmd('autocmd Filetype circom setlocal tabstop=4')
+vim.cmd('autocmd Filetype circom setlocal softtabstop=4')
+vim.cmd('autocmd Filetype circom setlocal shiftwidth=4')

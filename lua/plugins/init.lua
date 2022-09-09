@@ -14,6 +14,11 @@ return require('packer').startup(function(use)
         'wbthomason/packer.nvim'
     }
 
+    -- Syntax highlighting for circom
+    use {
+	    'iden3/vim-circom-syntax'
+    }
+
     -- Colorscheme
     use {
         'rose-pine/neovim',
