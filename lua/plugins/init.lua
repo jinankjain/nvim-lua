@@ -86,7 +86,6 @@ return require('packer').startup(function(use)
     use {'hrsh7th/vim-vsnip'}
     use {'onsails/lspkind-nvim'}
     use {'williamboman/nvim-lsp-installer'}
-    use {'jose-elias-alvarez/null-ls.nvim', config = "require('null-ls-config')"}
     use {'tami5/lspsaga.nvim', config = "require('lspsaga-config')"}
 
     use({'weilbith/nvim-code-action-menu', cmd = 'CodeActionMenu'})
