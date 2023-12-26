@@ -1,5 +1,7 @@
 local actions = require('telescope.actions')
-require('telescope').setup {
+local telescope = require('telescope')
+
+telescope.setup({
     defaults = {
         layout_config = {
             width = 0.75,
@@ -46,5 +48,5 @@ require('telescope').setup {
                 ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist
             }
         }
-    }
-}
+     }
+})

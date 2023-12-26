@@ -21,8 +21,6 @@ local mappings = {
     w = { ":w<cr>", "Save" },
     c = { ":bdelete<cr>", "Close Buffer" },
     E = { ":e ~/.config/nvim/init.lua", "Edit nvim config file" },
-    f = {":Telescope find_files<cr>", "Telescope Find Files"},
-    r = {":Telescope live_grep<cr>", "Telescope Live Grep"},
 }
 local opt = { prefix = '<leader>' }
 wk.register(mappings, opts)

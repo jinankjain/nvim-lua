@@ -72,7 +72,11 @@ return require('packer').startup(function(use)
 
     use {
         'nvim-telescope/telescope.nvim',
-        requires = {{'nvim-lua/plenary.nvim'}},
+        requires = {{
+            'nvim-lua/plenary.nvim',
+            { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+            'nvim-tree/nvim-web-devicons',
+        }},
         cmd = "Telescope",
         config = "require('telescope-config')"
     }
@@ -84,7 +88,8 @@ return require('packer').startup(function(use)
     use {'hrsh7th/cmp-vsnip'}
     use {'hrsh7th/vim-vsnip'}
     use {'onsails/lspkind-nvim'}
-    use {'williamboman/nvim-lsp-installer'}
+    use {'williamboman/mason.nvim'}
+    use {'williamboman/mason-lspconfig.nvim'}
     use {'tami5/lspsaga.nvim', config = "require('lspsaga-config')"}
 
     use({'weilbith/nvim-code-action-menu', cmd = 'CodeActionMenu'})
@@ -94,6 +99,13 @@ return require('packer').startup(function(use)
 
     --- Git utilities
     use {'tpope/vim-fugitive'}
+
+    use {
+        'rmagatti/goto-preview',
+        config = function()
+        require('goto-preview').setup {}
+        end
+    }
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins

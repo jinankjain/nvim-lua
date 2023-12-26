@@ -21,7 +21,7 @@ m.nnoremap('gn', '<cmd>lua vim.lsp.buf.rename()<CR>')
 m.nnoremap('gs', '<cmd>lua vim.lsp.buf.document_symbol()<CR>')
 m.nnoremap('gw', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
 m.nnoremap('gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-m.nnoremap('gd', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
+m.nnoremap('gd', "<cmd>lua require('goto-preview').goto_preview_definition()<CR>")
 m.nnoremap('ga', '<cmd>CodeActionMenu<CR>')
 
 m.nnoremap('[x', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
@@ -41,3 +41,8 @@ m.noremap('<leader>e', ':NvimTreeToggle<cr>')
 
 -- Whichkey help
 m.noremap('<leader>w', ':WhichKey<cr>')
+
+m.noremap("<leader>ff", "<cmd>Telescope find_files<cr>")
+m.noremap("<leader>fr", "<cmd>Telescope oldfiles<cr>")
+m.noremap("<leader>fs", "<cmd>Telescope live_grep<cr>")
+m.noremap("<leader>fc", "<cmd>Telescope grep_string<cr>")
