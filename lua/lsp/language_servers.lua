@@ -1,21 +1,29 @@
-local lsp_installer = require('nvim-lsp-installer')
+local mason = require("mason")
+local mason_lspconfig = require("mason-lspconfig")
+local mason_tool_installer = require("mason-tool-installer")
 
-lsp_installer.on_server_ready(function(server)
-  local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol
-                                                                       .make_client_capabilities())
-  local opts = {capabilities = capabilities}
-  if server.name == "sumneko_lua" then
-    opts = vim.tbl_deep_extend("force", {
-      settings = {
-        Lua = {
-          runtime = {version = 'LuaJIT', path = vim.split(package.path, ';')},
-          diagnostics = {globals = {'vim'}},
-          workspace = {library = vim.api.nvim_get_runtime_file("", true), checkThirdParty = false},
-          telemetry = {enable = false}
-        }
-      }
+mason.setup({
+  ui = {
+    icons = {
+      package_installed = "✓",
+      package_pending = "➜",
+      package_uninstalled = "✗",
+    },
+  },
+})
 
-    }, opts)
-  end
-  server:setup(opts)
-end)
+mason_lspconfig.setup({
+  -- list of servers for mason to install
+  ensure_installed = {
+    "rust_analyzer",
+    "clangd",
+  },
+  -- auto-install configured servers (with lspconfig)
+  automatic_installation = true, -- not the same as ensure_installed
+})
+
+mason_tool_installer.setup({
+   ensure_installed = {
+     "prettier", -- prettier formatter
+   },
+})

@@ -81,15 +81,36 @@ return require('packer').startup(function(use)
         config = "require('telescope-config')"
     }
 
-    use {'neovim/nvim-lspconfig', config = "require('lsp')"}
-    use {'hrsh7th/cmp-nvim-lsp'}
-    use {'hrsh7th/cmp-buffer'}
-    use {'hrsh7th/nvim-cmp'}
+
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'L3MON4D3/LuaSnip',
+            'saadparwaiz1/cmp_luasnip',
+            'rafamadriz/friendly-snippets',
+        }
+    }
+
+    use {
+        'neovim/nvim-lspconfig',
+        requires = {
+            'hrsh7th/cmp-nvim-lsp',
+            { 'antosha417/nvim-lsp-file-operations', config = true },
+        },
+        config = "require('lsp')"
+    }
     use {'hrsh7th/cmp-vsnip'}
     use {'hrsh7th/vim-vsnip'}
     use {'onsails/lspkind-nvim'}
-    use {'williamboman/mason.nvim'}
-    use {'williamboman/mason-lspconfig.nvim'}
+    use {
+        'williamboman/mason.nvim',
+        requires = {
+            'williamboman/mason-lspconfig.nvim',
+            'WhoIsSethDaniel/mason-tool-installer.nvim',
+        }
+    }
     use {'tami5/lspsaga.nvim', config = "require('lspsaga-config')"}
 
     use({'weilbith/nvim-code-action-menu', cmd = 'CodeActionMenu'})
