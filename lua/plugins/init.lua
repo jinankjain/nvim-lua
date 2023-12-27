@@ -53,12 +53,6 @@ return require('packer').startup(function(use)
     }
 
     use {
-        'b0o/mapx.nvim',
-        before = "which-key.nvim",
-        config = "require('mapx-config')"
-    }
-
-    use {
         'folke/which-key.nvim',
         config = "require('which-key-config')"
     }
@@ -121,14 +115,9 @@ return require('packer').startup(function(use)
     --- Git utilities
     use {'tpope/vim-fugitive'}
 
-    use {
-        'rmagatti/goto-preview',
-        config = function()
-        require('goto-preview').setup {}
-        end
-    }
-
     use { 'stevearc/dressing.nvim' }
+
+    use { 'stevearc/conform.nvim', config = "require('formatter-config')" }
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
