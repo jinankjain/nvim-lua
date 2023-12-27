@@ -68,3 +68,9 @@ lspconfig["clangd"].setup({
   capabilities = capabilities,
   on_attach = on_attach,
 })
+
+-- configure zig server
+lspconfig["zls"].setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
