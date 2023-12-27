@@ -57,8 +57,14 @@ end
 
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
--- configure html server
+-- configure rust server
 lspconfig["rust_analyzer"].setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
+
+-- configure cpp server
+lspconfig["clangd"].setup({
   capabilities = capabilities,
   on_attach = on_attach,
 })
