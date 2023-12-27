@@ -27,6 +27,7 @@ keymap.set({"n"}, "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy
 keymap.set({"n"}, "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
 keymap.set({"n"}, "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
 keymap.set({"n"}, "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
+keymap.set({"n"}, "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Find available buffers" })
 
 keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle file explorer" }) -- toggle file explorer
 keymap.set("n", "<leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Toggle file explorer on current file" }) -- toggle file explorer on current file
