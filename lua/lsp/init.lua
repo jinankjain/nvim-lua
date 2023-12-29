@@ -1,6 +1,5 @@
 require('lsp/cmp')
 require('lsp/diagnostic_signs')
-require('lsp/language_servers')
 
 -- import lspconfig pluging
 local lspconfig = require('lspconfig')

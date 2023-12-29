@@ -34,14 +34,14 @@ return require('packer').startup(function(use)
 
     use {
         'hoob3rt/lualine.nvim',
-        requires = {'kyazdani42/nvim-web-devicons', opt = true},
+        requires = {'nvim-tree/nvim-web-devicons', opt = true},
         event = "BufWinEnter",
         config = "require('lualine-config')"
     }
 
     use {
         'akinsho/bufferline.nvim',
-        requires = 'kyazdani42/nvim-web-devicons',
+        requires = 'nvim-tree/nvim-web-devicons',
         event = "BufWinEnter",
         config = "require('bufferline-config')"
     }
@@ -58,8 +58,8 @@ return require('packer').startup(function(use)
     }
 
     use {
-        'kyazdani42/nvim-tree.lua',
-        requires = 'kyazdani42/nvim-web-devicons',
+        'nvim-tree/nvim-tree.lua',
+        requires = 'nvim-tree/nvim-web-devicons',
         cmd = "NvimTreeToggle",
         config = "require('nvim-tree-config')"
     }
@@ -74,7 +74,6 @@ return require('packer').startup(function(use)
         cmd = "Telescope",
         config = "require('telescope-config')"
     }
-
 
     use {
         'hrsh7th/nvim-cmp',
@@ -103,7 +102,8 @@ return require('packer').startup(function(use)
         requires = {
             'williamboman/mason-lspconfig.nvim',
             'WhoIsSethDaniel/mason-tool-installer.nvim',
-        }
+        },
+        config = "require('mason-config')"
     }
     use {'tami5/lspsaga.nvim', config = "require('lspsaga-config')"}
 
@@ -116,8 +116,8 @@ return require('packer').startup(function(use)
     use {'tpope/vim-fugitive'}
 
     use { 'stevearc/dressing.nvim' }
-
-    use { 'stevearc/conform.nvim', config = "require('formatter-config')" }
+--
+--    use { 'stevearc/conform.nvim', config = "require('formatter-config')" }
 
     use { 'szw/vim-maximizer' }
 
