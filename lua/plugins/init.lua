@@ -22,6 +22,7 @@ return require('packer').startup(function(use)
     -- Colorscheme
     use {
         "catppuccin/nvim",
+        as = "catppuccin",
         config = "require('catppuccin-config')"
     }
 
