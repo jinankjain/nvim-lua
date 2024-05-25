@@ -1,44 +1,43 @@
-vim.cmd('filetype plugin indent on')
-vim.o.hidden = true
-vim.o.whichwrap = 'b,s,<,>,[,],h,l'
-vim.o.pumheight = 20
-vim.o.fileencoding = 'utf-8'
-vim.o.cmdheight = 2
-vim.o.termguicolors = true
-vim.opt.termguicolors = true
-vim.o.splitright = true
-vim.o.splitbelow = true
-vim.o.conceallevel = 0
-vim.o.showtabline = 2
-vim.o.showmode = false
-vim.o.clipboard = 'unnamedplus'
-vim.o.hlsearch = false
-vim.o.ignorecase = true
-vim.o.scrolloff = 3
-vim.o.sidescrolloff = 5
-vim.o.mouse = "a"
-vim.opt.colorcolumn = "80"
+local utils = require('utils')
 
-vim.wo.wrap = false
-vim.wo.number = true
-vim.wo.cursorline = true
-vim.wo.signcolumn = "yes"
+local cmd = vim.cmd
+local indent = 4
 
-vim.o.tabstop = 8
-vim.bo.tabstop = 8
-vim.o.softtabstop = 8
-vim.bo.softtabstop = 8
-vim.o.shiftwidth = 8
-vim.bo.shiftwidth = 8
-vim.o.autoindent = true
-vim.bo.autoindent = true
-vim.o.expandtab = true
-vim.bo.expandtab = true
+cmd 'syntax enable'
+cmd 'filetype plugin indent on'
+cmd 'set shell=/usr/bin/bash'
+utils.opt('b', 'expandtab', true)
+utils.opt('b', 'shiftwidth', indent)
+utils.opt('b', 'smartindent', true)
+utils.opt('o', 'hidden', true)
+utils.opt('o', 'ignorecase', true)
+utils.opt('o', 'scrolloff', 4)
+utils.opt('o', 'shiftround', true)
+utils.opt('o', 'smartcase', true)
+utils.opt('o', 'splitbelow', true)
+utils.opt('o', 'splitright', true)
+utils.opt('o', 'wildmode', 'list:longest')
+utils.opt('w', 'relativenumber', true)
+utils.opt('o', 'clipboard', 'unnamed,unnamedplus')
+utils.opt('o', 'colorcolumn', '80')
 
-vim.cmd('autocmd Filetype javascript setlocal tabstop=4')
-vim.cmd('autocmd Filetype javascript setlocal softtabstop=4')
-vim.cmd('autocmd Filetype javascript setlocal shiftwidth=4')
+--code folding
+utils.opt('o', 'foldcolumn', '1')
+utils.opt('o', 'foldlevel', 1)
+utils.opt('o', 'foldlevelstart', 99)
+utils.opt('o', 'foldenable', true)
+utils.opt('o', 'foldclose', 'all')
 
-vim.cmd('autocmd Filetype circom setlocal tabstop=4')
-vim.cmd('autocmd Filetype circom setlocal softtabstop=4')
-vim.cmd('autocmd Filetype circom setlocal shiftwidth=4')
+-- Highlight on yank
+vim.cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'
+
+-- Indent blankline
+vim.opt.list = true
+vim.opt.listchars:append "eol:↴"
+
+-- which-key
+vim.o.timeout = true
+vim.o.timeoutlen = 300
+vim.o.mouse = 'a'
+-- undotree
+vim.o.undofile = true

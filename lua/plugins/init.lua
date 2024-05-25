@@ -3,7 +3,8 @@ local fn = vim.fn
 -- Auto install packer on new machine
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if fn.empty(fn.glob(install_path)) > 0 then
-    packer_bootstrap = fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    packer_bootstrap = fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
+        install_path })
 end
 
 vim.cmd [[packadd packer.nvim]]
@@ -14,17 +15,26 @@ return require('packer').startup(function(use)
         'wbthomason/packer.nvim'
     }
 
-    -- Syntax highlighting for circom
-    use {
-	    'iden3/vim-circom-syntax'
-    }
-
     -- Colorscheme
     use {
         "catppuccin/nvim",
         as = "catppuccin",
         config = "require('catppuccin-config')"
     }
+
+    -- LSP configuration
+    use {
+        "williamboman/mason.nvim",
+        requires = {
+            "williamboman/mason-lspconfig.nvim",
+            "neovim/nvim-lspconfig",
+            'WhoIsSethDaniel/mason-tool-installer.nvim',
+        },
+        config = "require('mason-config')"
+    }
+
+    --- Git utilities
+    use { 'tpope/vim-fugitive' }
 
     use {
         'nvim-treesitter/nvim-treesitter',
@@ -33,13 +43,15 @@ return require('packer').startup(function(use)
         config = "require('treesitter-config')"
     }
 
+    -- Bottom Line
     use {
         'hoob3rt/lualine.nvim',
-        requires = {'nvim-tree/nvim-web-devicons', opt = true},
+        requires = { 'nvim-tree/nvim-web-devicons', opt = true },
         event = "BufWinEnter",
         config = "require('lualine-config')"
     }
 
+    -- Tab Bar at the top
     use {
         'akinsho/bufferline.nvim',
         requires = 'nvim-tree/nvim-web-devicons',
@@ -47,17 +59,7 @@ return require('packer').startup(function(use)
         config = "require('bufferline-config')"
     }
 
-    -- This provides awesome rainbows {{{{}}}}
-    use {
-        'p00f/nvim-ts-rainbow',
-        after = "nvim-treesitter"
-    }
-
-    use {
-        'folke/which-key.nvim',
-        config = "require('which-key-config')"
-    }
-
+    -- File explorer for the VIM
     use {
         'nvim-tree/nvim-tree.lua',
         requires = 'nvim-tree/nvim-web-devicons',
@@ -67,61 +69,140 @@ return require('packer').startup(function(use)
 
     use {
         'nvim-telescope/telescope.nvim',
-        requires = {{
+        requires = { {
             'nvim-lua/plenary.nvim',
-            { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+            {
+                'nvim-telescope/telescope-fzf-native.nvim',
+                build = 'make'
+            },
             'nvim-tree/nvim-web-devicons',
-        }},
-        cmd = "Telescope",
+        } },
         config = "require('telescope-config')"
     }
 
     use {
+        'ThePrimeagen/harpoon'
+    }
+
+    use {
+        'neovim/nvim-lspconfig'
+    }
+
+    use {
+        'hrsh7th/cmp-nvim-lsp'
+    }
+
+    use {
+        'nvimdev/lspsaga.nvim',
+        after = 'nvim-lspconfig',
+        config = "require('lspsaga-config')"
+    }
+
+    --nvim-cmp
+    use {
+        'hrsh7th/cmp-buffer'
+    }
+
+    use {
+        'hrsh7th/cmp-path'
+    }
+
+    use {
+        'hrsh7th/cmp-cmdline'
+    }
+
+    use {
         'hrsh7th/nvim-cmp',
-        requires = {
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path',
-            'L3MON4D3/LuaSnip',
-            'saadparwaiz1/cmp_luasnip',
-            'rafamadriz/friendly-snippets',
-        }
+        config = "require('nvim-cmp-config')"
     }
 
     use {
-        'neovim/nvim-lspconfig',
-        requires = {
-            'hrsh7th/cmp-nvim-lsp',
-            { 'antosha417/nvim-lsp-file-operations', config = true },
-        },
-        config = "require('lsp')"
+        'hrsh7th/cmp-vsnip'
     }
-    use {'hrsh7th/cmp-vsnip'}
-    use {'hrsh7th/vim-vsnip'}
-    use {'onsails/lspkind-nvim'}
+
     use {
-        'williamboman/mason.nvim',
-        requires = {
-            'williamboman/mason-lspconfig.nvim',
-            'WhoIsSethDaniel/mason-tool-installer.nvim',
-        },
-        config = "require('mason-config')"
+        'hrsh7th/vim-vsnip'
     }
-    use {'tami5/lspsaga.nvim', config = "require('lspsaga-config')"}
 
-    use({'weilbith/nvim-code-action-menu', cmd = 'CodeActionMenu'})
+    use {
+        'rafamadriz/friendly-snippets'
+    }
 
-    --- Autodetect indentation
-    use {'tpope/vim-sleuth'}
+    use {
+        'folke/which-key.nvim',
+        config = "require('which-key-config')"
+    }
 
-    --- Git utilities
-    use {'tpope/vim-fugitive'}
+    use {
+        'folke/flash.nvim',
+        config = "require('flash-config')"
+    }
 
-    use { 'stevearc/dressing.nvim' }
---
---    use { 'stevearc/conform.nvim', config = "require('formatter-config')" }
+    use {
+        'numToStr/Comment.nvim',
+        config = "require('comment-config')"
+    }
 
-    use { 'szw/vim-maximizer' }
+    use {
+        'nvim-pack/nvim-spectre',
+        config = "require('spectre-config')"
+    }
 
+    use {
+        'lewis6991/gitsigns.nvim',
+        config = "require('gitsigns-config')"
+    }
+
+    -- ufo, for code folding
+    use {
+        'kevinhwang91/nvim-ufo',
+        requires = 'kevinhwang91/promise-async',
+        config = "require('ufo-config')"
+    }
+
+    use {
+        'lukas-reineke/indent-blankline.nvim',
+        config = "require('indentline-config')",
+        after = "nvim-treesitter"
+    }
+
+    use {
+        'mg979/vim-visual-multi',
+        config = "require('vim-visual-multi-config')"
+    }
+
+    use {
+        'mbbill/undotree'
+    }
+
+    use {
+        'akinsho/toggleterm.nvim',
+        config = "require('toggle-term-config')"
+    }
+
+    use {
+        'Wansmer/treesj',
+        config = "require('treesj-config')"
+    }
+
+    use {
+        "sindrets/diffview.nvim",
+        config = "require('diffview-config')"
+    }
+
+    use {
+        'NeogitOrg/neogit',
+        tag = 'v0.0.1',
+        requires = {
+            "nvim-lua/plenary.nvim",  -- required
+            "sindrets/diffview.nvim", -- optional - Diff integration
+
+            -- Only one of these is needed, not both.
+            "nvim-telescope/telescope.nvim", -- optional
+            "ibhagwan/fzf-lua",              -- optional
+        },
+        config = "require('neogit-config')"
+    }
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
     if packer_bootstrap then
