@@ -39,5 +39,14 @@ vim.opt.listchars:append "eol:↴"
 vim.o.timeout = true
 vim.o.timeoutlen = 300
 vim.o.mouse = 'a'
+
 -- undotree
 vim.o.undofile = true
+
+vim.cmd('autocmd Filetype c setlocal shiftwidth=8')
+vim.cmd('autocmd Filetype c setlocal tabstop=8')
+vim.cmd('autocmd Filetype c setlocal noexpandtab')
+
+vim.cmd('autocmd Filetype cpp setlocal shiftwidth=8')
+vim.cmd('autocmd Filetype cpp setlocal tabstop=8')
+vim.cmd('autocmd Filetype cpp setlocal noexpandtab')
